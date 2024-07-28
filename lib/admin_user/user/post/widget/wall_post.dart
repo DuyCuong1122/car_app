@@ -321,7 +321,7 @@ class _WallPostState extends State<WallPost> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              LikeButton(isLiked: controller.state.isLiked.value, onTap: toggleLiked),
+              LikeButton(isLiked: widget.likes.contains(controller.state.idUser.value), onTap: toggleLiked),
               const SizedBox(width: 5),
               Text(
                 numberOfLikes.toString(),

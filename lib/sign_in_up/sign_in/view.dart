@@ -1,4 +1,3 @@
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
@@ -294,15 +293,15 @@ class _CarSelectionPageState extends State<CarSelectionPage>
             child: Image.asset('assets/car.png', width: 100),
           ),
           // Foreground content
-          Padding(
+          const Padding(
             padding:
-                const EdgeInsets.only(top: 8, bottom: 8, left: 20, right: 20),
+                EdgeInsets.only(top: 8, bottom: 8, left: 20, right: 20),
             child: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   // const SizedBox(height: 5),
-                  const Text(
+                  Text(
                     'Chọn loại xe',
                     style: TextStyle(
                       fontSize: 34,
@@ -333,7 +332,7 @@ class _CarSelectionPageState extends State<CarSelectionPage>
                       )
                     ],
                   ),
-                  const SizedBox(height: 5),
+                  SizedBox(height: 5),
                 ],
               ),
             ),
@@ -350,8 +349,8 @@ class CarButton extends StatelessWidget {
   final String image1;
   final String image2;
 
-  CarButton(
-      {required this.name1,
+  const CarButton(
+      {super.key, required this.name1,
       required this.name2,
       required this.image1,
       required this.image2});

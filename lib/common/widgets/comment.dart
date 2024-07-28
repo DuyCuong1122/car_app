@@ -4,8 +4,15 @@ class Comment extends StatelessWidget {
   final String text;
   final String time;
   final String user;
+  final String id;
+  final Function(String) onTap;
   const Comment(
-      {super.key, required this.text, required this.time, required this.user});
+      {super.key,
+      required this.text,
+      required this.time,
+      required this.user,
+      required this.id,
+      required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -29,27 +36,31 @@ class Comment extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 10),
-          Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text(
-              user,
-              style: const TextStyle(
-                  color: Colors.black,
-                  fontSize: 17,
-                  fontWeight: FontWeight.w700),
-            ),
-            const SizedBox(height: 5),
-            Text(text,
+          Expanded(
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text(
+                user,
                 style: const TextStyle(
                     color: Colors.black,
-                    fontSize: 15,
-                    fontWeight: FontWeight.w300)),
-            const SizedBox(height: 5),
-            Text(time,
-                style: const TextStyle(
-                    color: Color.fromRGBO(141, 137, 137, 1),
-                    fontSize: 14,
-                    fontWeight: FontWeight.w300))
-          ]),
+                    fontSize: 17,
+                    fontWeight: FontWeight.w700),
+              ),
+              const SizedBox(height: 5),
+              Text(text,
+                  style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w300)),
+              const SizedBox(height: 5),
+              Text(time,
+                  style: const TextStyle(
+                      color: Color.fromRGBO(141, 137, 137, 1),
+                      fontSize: 14,
+                      fontWeight: FontWeight.w300))
+            ]),
+          ),
+          IconButton(onPressed: ()=> onTap(id), icon: const Icon(Icons.delete))
         ],
       ),
     );

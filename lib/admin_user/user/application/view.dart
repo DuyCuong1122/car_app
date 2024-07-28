@@ -114,7 +114,7 @@ class ApplicationPage extends GetView<ApplicationController> {
                     await Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => GradientButtonPage()));
+                            builder: (context) => const GradientButtonPage()));
                     // Navigator.pop(context); // Đóng Drawer sau khi chọn
                   },
                 );
@@ -232,6 +232,8 @@ class SupportCustomer extends StatelessWidget {
 
 
 class GradientButtonPage extends StatelessWidget {
+  const GradientButtonPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -253,7 +255,7 @@ class GradientButtonPage extends StatelessWidget {
             stops: [0.1, 1.0], // Tỷ lệ gradient
           ),
         ),
-        child: Center(
+        child: const Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -262,17 +264,17 @@ class GradientButtonPage extends StatelessWidget {
                 width: 270, // Chiều rộng cố định cho các nút
                 child: RoundedButton(text: 'Thêm xe', page: '/add_car'),
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: 20),
               SizedBox(
                 width: 270,
                 child: RoundedButton(text: 'Thêm ảnh xe', page: '/add_image'),
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: 20),
               SizedBox(
                 width: 270,
                 child: RoundedButton(text: 'Thêm thông số kỹ thuật', page: '/add_spec'),
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: 20),
             ],
           ),
         ),
@@ -284,7 +286,7 @@ class GradientButtonPage extends StatelessWidget {
 class RoundedButton extends StatelessWidget {
   final String text;
   final String page;
-  RoundedButton({required this.text, required this.page});
+  const RoundedButton({super.key, required this.text, required this.page});
 
   @override
   Widget build(BuildContext context) {

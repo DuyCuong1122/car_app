@@ -283,9 +283,12 @@ class _PostDetailPageState extends State<PostDetailPage> {
                         final comment = comments[index];
 
                         return Comment(
-                            text: comment["content"],
-                            time: formatDate(comment["createdAt"]),
-                            user: comment["displayName"]);
+                          text: comment["content"],
+                          time: formatDate(comment["createdAt"]),
+                          user: comment["displayName"],
+                          id: comment['_id'],
+                          onTap: _controller.deleteComment,
+                        );
                       },
                     );
                   } else {

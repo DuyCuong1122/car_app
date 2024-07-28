@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import '../../../common/entities/detailCar.dart';
 
@@ -20,11 +20,11 @@ class DetailCarController extends GetxController {
   late final idUser;
   @override
   void onInit() async {
-
     String profile = await UserDBStore.to.getProfile();
     idUser = UserDB.fromJson(jsonDecode(profile)).id!.toString();
     log("idUser" + idUser);
     getDetailCar();
+    getAvgEvaluation();
     super.onInit();
   }
 
@@ -53,11 +53,8 @@ class DetailCarController extends GetxController {
 
   Future<void> addEvaluation(String text) async {
     try {
-      final response = await http.post(Uri.parse(addEvaluationURL), body: {
-        'nameCar': data.nameCar,
-        'idUser': idUser,
-        'content': text
-      });
+      final response = await http.post(Uri.parse(addEvaluationURL),
+          body: {'nameCar': data.nameCar, 'idUser': idUser, 'content': text});
       // log(response.statusCode.toString());
     } catch (e) {
       throw Exception('Failed to add evaluation: $e');
@@ -86,11 +83,10 @@ class DetailCarController extends GetxController {
 
         state.specs.assignAll(detailCar.specs);
         state.image.assignAll(detailCar.images);
-        for(var i in state.image)
-          {
-            state.colors_image.addIf(i.type == "Colors", i);
-            state.feature_image.addIf(i.type != "Colors", i);
-          }
+        for (var i in state.image) {
+          state.colors_image.addIf(i.type == "Colors", i);
+          state.feature_image.addIf(i.type != "Colors", i);
+        }
 
         // log(state.image[0].path);
         // Update other individual attributes if needed
@@ -99,6 +95,37 @@ class DetailCarController extends GetxController {
       }
     } catch (e) {
       print("Error: $e");
+    }
+  }
+
+  Future<void> deleteEvaluation(String id) async {
+    try {
+      final res =
+          await http.delete(Uri.parse(deleteEvaluationURL), body: {'id': id});
+      if (res.statusCode == 200) print("success");
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future<void> getAvgEvaluation() async {
+    try {
+      final res = await http.post(Uri.parse(averageEvaluationURL),
+          body: {'idCar': '6679d57f76556194ac371245'});
+      var dataAVG = jsonDecode(res.body);
+      print(dataAVG.toString());
+      if (res.statusCode == 200) {
+        {
+          state.getAVG.value =
+              double.parse(dataAVG['averageRating'].toString());
+          print( "rating" + state.getAVG.value.toString());
+          print("thanh cong");
+        }
+      } else {
+        print("That bai");
+      }
+    } catch (e) {
+      print(e);
     }
   }
 }

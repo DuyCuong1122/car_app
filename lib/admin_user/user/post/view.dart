@@ -133,7 +133,7 @@ class PostPage extends GetView<PostController> {
                                   user: post["displayName"] == "N/A" ? post['username'] : post["displayName"],
                                   postId: post["_id"] ?? "No id",
                                   title: post["title"] ?? "No title",
-                                  likes: List<String>.from(post["Likes"] ?? []),
+                                  likes: List<String>.from(post["likes"] ?? []),
                                   imageUrls:
                                   List<String>.from(post["images"] ?? []),
                                   numberOfComments:

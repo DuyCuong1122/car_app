@@ -45,7 +45,7 @@ class TextWithImageController extends GetxController {
 
     final imageBytes = await pickedFile.readAsBytes();
 
-    final prompt = TextPart(query);
+    final prompt = TextPart("$query trả lời một cách tóm tắt và ngắn gọn ");
     final imagePart = DataPart('image/jpeg', imageBytes);
     await model.generateContent([
       Content.multi([prompt, imagePart])

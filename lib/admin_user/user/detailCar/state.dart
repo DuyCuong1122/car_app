@@ -1,3 +1,4 @@
+
 import 'package:do_an_tot_nghiep_final/common/entities/image.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/get_rx.dart';
@@ -24,4 +25,5 @@ class DetailCarState {
   RxList<Image> feature_image = <Image>[].obs;
   RxList<DetailCar> detail = <DetailCar>[].obs;
   var idUser = "".obs;
+  var getAVG = 0.0.obs;
 }

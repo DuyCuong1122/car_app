@@ -296,8 +296,9 @@ class ComparePage extends GetView<CompareController> {
                                             fit: BoxFit.fitWidth,
                                             loadingBuilder: (context, child,
                                                 loadingProgress) {
-                                              if (loadingProgress == null)
+                                              if (loadingProgress == null) {
                                                 return child;
+                                              }
                                               return Center(
                                                 child:
                                                     CircularProgressIndicator(
@@ -351,8 +352,9 @@ class ComparePage extends GetView<CompareController> {
                                             fit: BoxFit.fitWidth,
                                             loadingBuilder: (context, child,
                                                 loadingProgress) {
-                                              if (loadingProgress == null)
+                                              if (loadingProgress == null) {
                                                 return child;
+                                              }
                                               return Center(
                                                 child:
                                                     CircularProgressIndicator(

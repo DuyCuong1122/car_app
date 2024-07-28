@@ -63,6 +63,20 @@ class PostController extends GetxController {
     }
   }
 
+  Future <void> deleteComment(String id)async{
+    try{
+      final res = await http.delete(Uri.parse(deleteCommentURL), body: {"id" : id});
+      if (res.statusCode == 204){
+        print("Success");
+      }
+      else{
+        throw Exception('Failed to delete comment : ${res.statusCode}' );
+      }
+    }catch(e){
+      print(e);
+    }
+  }
+
   Future<void> addPost() async {
     try {
       String titlePost = title.text;
@@ -91,7 +105,7 @@ class PostController extends GetxController {
       final response = await request.send();
 
       if (response.statusCode == 201 || response.statusCode == 200) {
-        Get.snackbar('Success', 'Đăng bài thành công');
+        Get.snackbar('Thành công', 'Đăng bài thành công');
         content.clear();
         title.clear();
         state.selectedImages.clear();
@@ -101,7 +115,7 @@ class PostController extends GetxController {
         throw Exception('Failed to add post: ${response.statusCode} - $responseBody');
       }
     } catch (e) {
-      Get.snackbar('Error', 'Failed to add post: $e');
+      Get.snackbar('lỗi', 'lỗi thêm bài đăng');
       log('Failed to add post: $e');
     }
   }

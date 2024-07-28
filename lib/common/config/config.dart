@@ -1,3 +1,4 @@
+
 const ipV4 = '192.168.120.76';
 
 const post = 3000;
@@ -28,3 +29,5 @@ const carShowroomURL = '${url}car_showroom';
 const addEvaluationURL = "${url}add_evaluation";
 const fetchEvaluationURL = '${url}evaluations';
 const deleteEvaluationURL = '${url}delete_evaluation';
+const deleteCommentURL = "${url}delete_comment";
+const averageEvaluationURL = "${url}getAveraged_evaluation";

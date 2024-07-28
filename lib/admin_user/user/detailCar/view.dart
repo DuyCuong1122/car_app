@@ -298,14 +298,14 @@ class DetailCarPage extends GetView<DetailCarController> {
                           child: PageView.builder(
                             itemCount: controller.state.colors_image.length,
                             itemBuilder: (context, index) {
-                              final colors_image =
+                              final colorsImage =
                                   controller.state.colors_image[index];
                               return Padding(
                                 padding: const EdgeInsets.all(4.0),
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(10),
                                   child: Image.network(
-                                    colors_image.path,
+                                    colorsImage.path,
                                     fit: BoxFit.fitWidth,
                                     loadingBuilder:
                                         (context, child, loadingProgress) {
@@ -354,14 +354,14 @@ class DetailCarPage extends GetView<DetailCarController> {
                           child: PageView.builder(
                             itemCount: controller.state.feature_image.length,
                             itemBuilder: (context, index) {
-                              final feature_image =
+                              final featureImage =
                                   controller.state.feature_image[index];
                               return Padding(
                                 padding: const EdgeInsets.all(4.0),
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(10),
                                   child: Image.network(
-                                    feature_image.path,
+                                    featureImage.path,
                                     fit: BoxFit.fitWidth,
                                     loadingBuilder:
                                         (context, child, loadingProgress) {
@@ -396,6 +396,7 @@ class DetailCarPage extends GetView<DetailCarController> {
                   const SizedBox(
                     height: 20,
                   ),
+
                   const Text("Đánh giá xe",
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
@@ -439,6 +440,9 @@ class DetailCarPage extends GetView<DetailCarController> {
                       ],
                     ),
                   ),
+
+
+                  SizedBox(child: Text("Rating: "+controller.state.getAVG.value.toString()),),
                   const SizedBox(
                     height: 20,
                   ),
@@ -476,9 +480,12 @@ class DetailCarPage extends GetView<DetailCarController> {
                             itemBuilder: (context, index) {
                               final evaluation = evaluations[index];
                               return Comment(
-                                  text: evaluation['content'],
-                                  time: formatDate(evaluation['createdAt']),
-                                  user: evaluation['username']);
+                                text: evaluation['content'],
+                                time: formatDate(evaluation['createdAt']),
+                                user: evaluation['username'],
+                                id: evaluation['id'],
+                                onTap: controller.deleteEvaluation,
+                              );
                             },
                           );
                         } else {
